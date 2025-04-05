@@ -2,11 +2,11 @@
   {
     "listing": "/projects.html",
     "items": [
+      "/projects/hw1/index.html",
       "/projects/hw2/index.html",
-      "/projects/hw5/index.html",
-      "/projects/hw4/index.html",
       "/projects/hw3/index.html",
-      "/projects/hw1/index.html"
+      "/projects/hw4/index.html",
+      "/projects/hw5/index.html"
     ]
   }
 ]
