@@ -4,13 +4,27 @@
     "href": "index.html",
     "title": "Melody Miu",
     "section": "",
-    "text": "Here is a paragraph about me!\nThis is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "Here is a paragraph about me!\nThis is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites. git"
   },
   {
     "objectID": "resume.html",
     "href": "resume.html",
     "title": "Melody’s Resume",
     "section": "",
-    "text": "Last updated 4-5-2025\nDownload PDF file."
+    "text": "Last updated 04-05-2025\nDownload PDF file."
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "My Projects",
+    "section": "",
+    "text": "Homework 2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 5\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 4\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 1\n\n\n\n\nMelody Miu\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "projects/hw1/index.html",
+    "href": "projects/hw1/index.html",
+    "title": "Homework 1",
+    "section": "",
+    "text": "Question 1\nProf says to make a chart.\n\n\n[-0.17051387 -1.61090165 -0.2547355  -1.67523786  1.12350416 -1.08523299\n -0.30192699  0.73166516 -0.49089368 -0.06207333  1.51152467  0.15998216\n -0.14359095  0.93323578  0.82835882  1.06730331  0.12586056 -0.59461529\n  1.72766319 -0.38079556  1.2447234   0.4005346   0.78885823 -0.49261878\n  1.60379913 -0.01029029 -1.06713182  0.78235598 -1.0116661  -0.0972343\n  0.83463175  1.25355437  1.65524669 -2.22866246  1.34941811  0.70283919\n  0.8259619  -1.44764102  1.43526615  0.59770913 -0.64976277  1.60619874\n -0.62388102 -0.17569911  1.40071181  2.21241094  1.94538183  1.74231859\n  2.23407492 -0.24065251 -0.47858747  0.68513305  1.07201827 -0.11677694\n  0.90893219  0.44140808  2.13373434 -0.06258336 -1.0230383   0.87992343\n  0.2051723  -0.21376987  0.2932381  -0.10880967 -2.02157712 -1.11900882\n  1.52688842  0.14702069  0.86114912 -0.27680602 -0.62785071 -0.69270405\n -0.04826973 -0.05581184 -2.10981864  1.95711756 -1.65502212 -0.9870037\n -1.90243693 -0.35939149 -1.81426782 -0.26460406 -2.91243957  0.86838514\n  0.32636164 -0.46202636 -0.81370713 -0.03854298  0.59955398  0.63216356\n  0.92526624  0.0292706  -0.17963657  0.7573855  -0.37111184 -0.57697269\n -1.05861142  0.0153966  -0.20253382 -0.14236563]"
   }
 ]

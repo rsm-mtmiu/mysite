@@ -1,0 +1,28 @@
+---
+title: Homework 1
+author: Melody Miu
+---
+
+# Question 1
+
+Prof says to make a chart.
+
+```{python}
+#| echo: false # does not show the code
+
+y = 10
+# make a sample histogram
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+import pandas as pd
+
+# plot a histogram
+x = np.random.normal(size=100)
+plt.hist(x, bins=30, density=True, alpha=0.5, color='g')
+plt.title('Histogram of Normal Distribution')
+plt.xlabel('Value')
+plt.ylabel('Density')
+
+print(x)
+```
