@@ -1,0 +1,18 @@
+---
+title: "Melody Miu"
+image: images/headshot.jpg
+about: 
+    template: jolla
+    links:
+        - icon: envelope
+          href: mailto:m1miu@ucsd.edu
+        - icon: linkedin # use bootstrap for more icons
+          href: https://www.linkedin.com/in/melody-miu/
+---
+
+Here is a paragraph about me!
+
+This is a Quarto website.
+
+To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+git 

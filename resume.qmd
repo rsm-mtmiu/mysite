@@ -1,0 +1,7 @@
+---
+title: "Melody's Resume"
+---
+
+_Last updated 04-05-2025_ 
+
+{{< pdf other_documents/Melody_Miu_Resume.pdf width = 100% height = 800 >}}
