@@ -1,18 +1,43 @@
 ---
-title: "Melody Miu"
+title: "MELODY MIU"
+# subtitle: "Fiscal Coordinator"
 image: images/headshot.jpg
 about: 
     template: jolla
     links:
         - icon: envelope
           href: mailto:m1miu@ucsd.edu
+          text: "Email"
         - icon: linkedin # use bootstrap for more icons
           href: https://www.linkedin.com/in/melody-miu/
+          text: "LinkedIn"
+        - icon: github # use bootstrap for more icons
+          href: https://github.com/rsm-mtmiu?tab=repositories
+          text: "GitHub"
 ---
 
-Here is a paragraph about me!
+Hi there! I'm Melody, and I'm committed to providing innovation solutions with a background in accounting, sales, and large scale event programming in the tech and music industry. 
 
-This is a Quarto website.
+<!-- ::: {.grid}
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
-git 
+::: {.g-col-12}
+[Hello and welcome!]{.home-header}
+:::
+
+::: {.g-col-12 .g-col-md-4}
+<div class="card h-100" id="card-third-color">
+<div class="card-body d-flex flex-column">
+<p class="card-text">Slides and resources from talks I've given at R and RLadies user groups and conferences.</p>
+<div style="margin-top: auto;"><a href="talks.qmd" class="card-link third-color-link heading-font">TALKS</a></div>
+</div>
+</div>
+:::
+
+::: {.g-col-12 .g-col-md-4}
+<div class="card h-100" id="card-first-color">
+<div class="card-body d-flex flex-column">
+<p class="card-text">About me, my interests and experience, and my work as a Research Software Engineer.</p>
+<div style="margin-top: auto;"><a href="about.qmd" class="card-link heading-font">ABOUT</a></div>
+</div>
+</div>
+::: -->

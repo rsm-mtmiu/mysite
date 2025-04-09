@@ -1,3 +1,5 @@
 ---
 title: Homework 5
+categories: [Homework]
+
 ---

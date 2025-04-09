@@ -1,0 +1,7 @@
+---
+title: Spotify Analysis
+categories: [Project]
+author: Melody Miu, Andrew Burda, Jay Lee, Juan Hernandex
+---
+
+<a href="https://rsm-aburda.github.io/MGTA-452-Final-Project/team.html" target="_blank" rel="noopener">External Site</a>

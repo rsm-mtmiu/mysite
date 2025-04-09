@@ -1,0 +1,19 @@
+---
+title: "MELODY MIU"
+subtitle: "Fiscal Coordinator"
+image: images/headshot.jpg
+about: 
+    template: jolla
+    links:
+        - icon: envelope
+          href: mailto:m1miu@ucsd.edu
+          text: "Email"
+        - icon: linkedin # use bootstrap for more icons
+          href: https://www.linkedin.com/in/melody-miu/
+          text: "LinkedIn"
+        - icon: github # use bootstrap for more icons
+          href: https://github.com/rsm-mtmiu?tab=repositories
+          text: "GitHub"
+---
+
+Hi there! I'm Melody, and I'm committed to providing innovation solutions with a background in accounting, sales, and large scale event programming in the tech and music industry. 

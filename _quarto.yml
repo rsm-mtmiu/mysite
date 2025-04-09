@@ -13,13 +13,44 @@ website:
       - href: projects.qmd
         text: Projects
 
+    right:
+      - icon: envelope
+      #   aria-label: email
+      #   href: "mailto:mail.marvinschmitt@gmail.com" 
+      # - icon: linkedin
+      #   href: https://www.linkedin.com/in/marvin-schmitt-a85b321a2/
+      - icon: github
+        href: https://github.com/rsm-mtmiu?tab=repositories
+      - text: Get in touch!
+        menu:
+          - icon: linkedin
+            text: LinkedIn
+            href: https://www.linkedin.com/in/samanthacsik/
+            target: _blank
+          - icon: envelope
+            text: Email
+            href: mailto:mtmiu@ucsd.edu
+  page-footer: 
+    background: light
+    left: © 2025 Melody Miu
+    # right: This website is built with {{< fa heart title="a heart" >}}, [{{< fa brands github title="GitHub octocat logo" >}}](https://github.com/rsm-mtmiu){target=_blank} and [Quarto](https://quarto.org/){target=_blank}
+    right: |
+      Built with <i class="fa-solid fa-heart" title="Love"></i>, 
+      <a href="https://github.com/rsm-mtmiu" target="_blank">
+        <i class="fab fa-github" title="GitHub"></i>
+      </a>, and 
+      <a href="https://quarto.org/" target="_blank">Quarto</a>
+
 format:
   html:
     theme:
-      - cosmo
+      - yeti  # morph
       - brand
     css: styles.css
     toc: true
+    include-in-header:
+      - text: |
+          <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
 
 

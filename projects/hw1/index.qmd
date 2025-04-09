@@ -1,11 +1,12 @@
 ---
 title: Homework 1
+categories: [Homework]
 author: Melody Miu
 ---
 
 # Question 1
 
-Prof says to make a chart.
+Test.
 
 ```{python}
 #| echo: false # does not show the code
