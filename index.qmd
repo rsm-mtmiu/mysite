@@ -16,7 +16,7 @@ about:
           text: "GitHub"
 ---
 
-Hi there! I'm Melody, and I'm committed to providing innovation solutions with a background in accounting, sales, and large scale event programming in the tech and music industry. 
+Hi there! I'm Melody, and I'm committed to providing innovation solutions with a background in accounting, sales, and large scale event programming in the non-profit, tech and music industry. 
 
 <!-- ::: {.grid}
 

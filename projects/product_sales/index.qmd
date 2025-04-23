@@ -1,0 +1,8 @@
+---
+title: Sales Analysis
+description: "Using Polars to explore sales data"
+categories: [Python]
+
+---
+
+```{include: assignment3.ipynb}

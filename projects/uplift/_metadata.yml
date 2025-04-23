@@ -1,0 +1,5 @@
+cg-uplift.ipynb:
+  title: "My Data Analysis"
+  description: "A Jupyter Notebook exploring data."
+  categories: [Python, Jupyter]
+  # image: images/preview.png

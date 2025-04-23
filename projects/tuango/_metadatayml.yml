@@ -1,0 +1,17 @@
+# mini_case_1.ipynb:
+#   title: "My Data Analysis"
+#   description: "A Jupyter Notebook exploring data."
+#   categories: [Python, Jupyter]
+#   image: images/preview.png
+
+# bbb-recreate-data-pandas.ipynb:
+#   title: "My Data Analysis"
+#   description: "A Jupyter Notebook exploring data."
+#   categories: [Python, Jupyter]
+#   # image: images/preview.png
+
+tuango.ipynb:
+  title: "My Data Analysis"
+  description: "A Jupyter Notebook exploring data."
+  categories: [Python, Jupyter]
+  # image: images/preview.png

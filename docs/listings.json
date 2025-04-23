@@ -2,12 +2,28 @@
   {
     "listing": "/projects.html",
     "items": [
-      "/projects/hw1/index.html",
-      "/projects/hw2/index.html",
-      "/projects/hw3/index.html",
-      "/projects/hw4/index.html",
-      "/projects/hw5/index.html",
-      "/projects/Spotify_analysis/index.html"
+      "/projects/uplift/cg-uplift.html",
+      "/projects/Uplift Modeling/index.html",
+      "/projects/intuit/intuit.html",
+      "/projects/bbb_case/bbb-recreate-data-pandas.html",
+      "/projects/product_sales/index.html",
+      "/projects/Spotify_analysis/index.html",
+      "/projects/cases/mini_case_1.html",
+      "/projects/tz_gaming/tz-gaming.html",
+      "/projects/tuango/tuango.html",
+      "/projects/ecommerce/questions.html",
+      "/projects/product_sales/assignment3.html"
+    ]
+  },
+  {
+    "listing": "/homework.html",
+    "items": [
+      "/homework/hw1/hw1_questions.html",
+      "/homework/hw1/index.html",
+      "/homework/hw2/index.html",
+      "/homework/hw3/index.html",
+      "/homework/hw4/index.html",
+      "/homework/hw5/index.html"
     ]
   }
 ]

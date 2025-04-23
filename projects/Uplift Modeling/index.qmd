@@ -1,0 +1,5 @@
+---
+title: "Data Visualization with Python"
+categories: [Python, Jupyter, Visualization]
+image: images/jupyter-preview.png
+---

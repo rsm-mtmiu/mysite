@@ -1,0 +1,8 @@
+---
+title: "My Homework"
+listing:
+    contents: homework
+    type: grid
+    sort: "title" # "sort"
+    categories: true
+---

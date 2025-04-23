@@ -28,5 +28,143 @@
   },
   "projects/Spotify_analysis/index.qmd": {
     "index.html": "5f6cb7cc"
+  },
+  "projects/Uplift Modeling/index.qmd": {
+    "index.html": "662f6d7b"
+  },
+  "projects/Uplift Modeling/cg-uplift.ipynb": {
+    "cg-uplift.html": "5aaead4b"
+  },
+  "projects/Uplift Modeling/rsm-mgta455-cg-uplift-2025-team-4/Debug.ipynb": {
+    "Debug.html": "0c4e89e4"
+  },
+  "projects/Uplift Modeling/rsm-mgta455-cg-uplift-2025-team-4/cg-uplift.ipynb": {
+    "cg-uplift.html": "20540ede"
+  },
+  "projects/Uplift Modeling/rsm-mgta455-cg-uplift-2025-team-4/sub-notebooks/Andrew.ipynb": {
+    "Andrew.html": "0dee6140"
+  },
+  "projects/Uplift Modeling/rsm-mgta455-cg-uplift-2025-team-4/sub-notebooks/Jay.ipynb": {
+    "Jay.html": "ccb8d243"
+  },
+  "projects/Uplift Modeling/rsm-mgta455-cg-uplift-2025-team-4/sub-notebooks/question1.ipynb": {
+    "question1.html": "9e6362e8"
+  },
+  "projects/Uplift Modeling/rsm-mgta455-cg-uplift-2025-team-4/sub-notebooks/Notebook_de_Juan.ipynb": {
+    "Notebook_de_Juan.html": "5a055b45"
+  },
+  "projects/Uplift Modeling/rsm-mgta455-cg-uplift-2025-team-4/sub-notebooks/Melody.ipynb": {
+    "Melody.html": "c5c79a79"
+  },
+  "projects/Uplift Modeling/rsm-mgta455-cg-uplift-2025-team-4/test_2.ipynb": {
+    "test_2.html": "e7c4efe3"
+  },
+  "projects/Uplift Modeling/rsm-mgta455-cg-uplift-2025-team-4/data/cg_ad_random_description.md": {
+    "cg_ad_random_description.html": "7b285c1f"
+  },
+  "projects/Uplift Modeling/rsm-mgta455-cg-uplift-2025-team-4/data/cg_ad_treatment_description.md": {
+    "cg_ad_treatment_description.html": "0546ae63"
+  },
+  "projects/Uplift Modeling/rsm-mgta455-cg-uplift-2025-team-4/data/cg_organic_control_description.md": {
+    "cg_organic_control_description.html": "4269ac0c"
+  },
+  "projects/Uplift Modeling/rsm-mgta455-cg-uplift-2025-team-4/test.ipynb": {
+    "test.html": "bfbe82d3"
+  },
+  "projects/Uplift Modeling/Debug.ipynb": {
+    "Debug.html": "97ceb4f1"
+  },
+  "projects/Uplift Modeling/test_2.ipynb": {
+    "test_2.html": "33ed03c1"
+  },
+  "projects/Uplift Modeling/data/cg_ad_random_description.md": {
+    "cg_ad_random_description.html": "53badfad"
+  },
+  "projects/Uplift Modeling/data/cg_ad_treatment_description.md": {
+    "cg_ad_treatment_description.html": "55e442a3"
+  },
+  "projects/Uplift Modeling/data/cg_organic_control_description.md": {
+    "cg_organic_control_description.html": "05643c00"
+  },
+  "projects/data/bbb_description.md": {
+    "bbb_description.html": "2cbbdfe7"
+  },
+  "projects/mini_case_1.ipynb": {
+    "mini_case_1.html": "01f7c8ae"
+  },
+  "projects/cases/mini_case_1.ipynb": {
+    "mini_case_1.html": "fba594ee"
+  },
+  "projects/bbb-recreate-data-pandas.ipynb": {
+    "bbb-recreate-data-pandas.html": "ec480fd4"
+  },
+  "projects/tuango.ipynb": {
+    "tuango.html": "2c906f5a"
+  },
+  "projects/data/tuango_post_description.md": {
+    "tuango_post_description.html": "80d4ca18"
+  },
+  "projects/data/tuango_pre_description.md": {
+    "tuango_pre_description.html": "d9f5f1ce"
+  },
+  "Homework/hw2/index.qmd": {
+    "index.html": "30fb23e3"
+  },
+  "Homework/hw5/index.qmd": {
+    "index.html": "c67c3aa1"
+  },
+  "Homework/hw4/index.qmd": {
+    "index.html": "80aa4385"
+  },
+  "Homework/hw3/index.qmd": {
+    "index.html": "abbca6f7"
+  },
+  "Homework/hw1/index.qmd": {
+    "index.html": "789ddb6f"
+  },
+  "homework/hw2/index.qmd": {
+    "index.html": "caf2a177"
+  },
+  "homework.qmd": {
+    "homework.html": "ed4881fd"
+  },
+  "homework/hw5/index.qmd": {
+    "index.html": "df79efcb"
+  },
+  "homework/hw4/index.qmd": {
+    "index.html": "d02381b2"
+  },
+  "homework/hw3/index.qmd": {
+    "index.html": "9041170f"
+  },
+  "homework/hw1/index.qmd": {
+    "index.html": "642dee76"
+  },
+  "projects/tuango/tuango.ipynb": {
+    "tuango.html": "2e7db45d"
+  },
+  "projects/bbb_case/bbb-recreate-data-pandas.ipynb": {
+    "bbb-recreate-data-pandas.html": "58401172"
+  },
+  "projects/tz_gaming/tz-gaming.ipynb": {
+    "tz-gaming.html": "71078860"
+  },
+  "projects/intuit/intuit.ipynb": {
+    "intuit.html": "c79291f5"
+  },
+  "projects/uplift/cg-uplift.ipynb": {
+    "cg-uplift.html": "e4f0e41b"
+  },
+  "projects/ecommerce/questions.ipynb": {
+    "questions.html": "b10e4ae1"
+  },
+  "projects/product_sales/assignment3.ipynb": {
+    "assignment3.html": "ce4253df"
+  },
+  "projects/product_sales/index.qmd": {
+    "index.html": "1ccdfc44"
+  },
+  "homework/hw1/hw1_questions.qmd": {
+    "hw1_questions.html": "7cab5d3a"
   }
 }
