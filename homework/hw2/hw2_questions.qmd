@@ -52,7 +52,7 @@ Let's also take a look at the distribution of patents by customer status.
 #| echo: false
 
 mean_patents = blueprinty.groupby('iscustomer')['patents'].mean().reset_index()
-print(mean_patents)
+# print(mean_patents)
 
 # create a bar chart
 plt.figure(figsize=(10, 6))
@@ -69,12 +69,6 @@ for i, v in enumerate(mean_patents['patents']):
 ```
 
 The mean number of patents for customers is 4.13, while the mean number of patents for non-customers is 3.47. This suggests that customers tend to have more patents on average than non-customers.
-```{python}
-# #| echo: false
-
-# patent_summary = blueprinty.groupby('iscustomer')['patents'].describe()
-# print(patent_summary)
-```
 
 ```{python}
 #| echo: false
@@ -113,7 +107,7 @@ import seaborn as sns
 
 age_summary = blueprinty.groupby('iscustomer')['age'].mean().reset_index()
 print("\nAge Summary by Customer Status:")
-print(age_summary)
+# print(age_summary)
 
 
 # create a histogram
@@ -146,8 +140,8 @@ Customers have a slightly higher mean age of 26.9 than non-customers, who's mean
 # region_distribution = blueprinty.groupby('iscustomer')['age'].value_counts(normalize=True).unstack().fillna(0)
 region_distribution = blueprinty.groupby('iscustomer')['age'].describe()
 
-print("Region Distribution by Customer Status:")
-print(region_distribution)
+# print("Region Distribution by Customer Status:")
+# print(region_distribution)
 
 region_counts = pd.crosstab(blueprinty['region'], blueprinty['iscustomer'], normalize='index')
 
@@ -221,25 +215,17 @@ def poisson_loglikelihood(lam, Y):
     
     loglik = -n * lam + total_Y * np.log(lam) - np.sum(gammaln(Y + 1))
     return loglik
-
-Y = np.array([2, 3, 1, 0, 4, 2])
-print(poisson_loglikelihood(2.5, Y))
 ```
 
 
 <!-- _todo: Code the likelihood (or log-likelihood) function for the Poisson model. This is a function of lambda and Y. For example:_ -->
 
-```
-<!-- poisson_loglikelihood <- function(lambda, Y){
-   ...
-} -->
-```
 
 Let's create a function for the log-likelihood of the Poisson model. The function will take in the observed counts \( Y \) and the expected Poisson rate \( \lambda \) and return the log-likelihood.
 
 
 ```{python}
-from scipy.special import gammaln  # for log(y!) = gammaln(y + 1)
+from scipy.special import gammaln 
 
 def poisson_log_likelihood(y, lam):
     """
@@ -290,7 +276,7 @@ plt.show()
 
 <!-- _todo: If you're feeling mathematical, take the first derivative of your likelihood or log-likelihood, set it equal to zero and solve for lambda. You will find lambda_mle is Ybar, which "feels right" because the mean of a Poisson distribution is lambda._ -->
 
-_todo: Find the MLE by optimizing your likelihood function with optim() in R or sp.optimize() in Python._
+<!-- _todo: Find the MLE by optimizing your likelihood function with optim() in R or sp.optimize() in Python._ -->
 
 Now we will find the MLE by optimizing the likelihood function with optim() in R or sp.optimize() in Python.
 
@@ -313,6 +299,7 @@ lambda_mle = result.x[0]
 print(f"MLE for lambda: {lambda_mle:.4f}")
 
 ```
+
 Function MLE: 3.6847
 Optimizer MLE: 3.6847
 
@@ -325,11 +312,7 @@ Next, we extend our simple Poisson model to a Poisson Regression Model such that
 
 <!-- _todo: Update your likelihood or log-likelihood function with an additional argument to take in a covariate matrix X. Also change the parameter of the model from lambda to the beta vector. In this model, lambda must be a positive number, so we choose the inverse link function g_inv() to be exp() so that_ $\lambda_i = e^{X_i'\beta}$. _For example:_ -->
 
-```
-<!-- poisson_regression_likelihood <- function(beta, Y, X){ -->
-   ...
-}
-```
+
 
 I will now add an additional argument to take in a covariate matrix X and change the parameter of the model from lambda to the beta vector. 
 
@@ -635,7 +618,7 @@ print(results.summary())
 
 ```
 
-From the Poisson Model, we can gther than intant book has the biggest impact of almost 34% increase in the number of reviews. Each 1 point in cleanliness score increases bookings by 10.87%. More bedrooms increases bookings by 4.67%, and having private rooms also increase bookings by 8.58%. 
+From the Poisson Model, we can gather than instant book has the biggest impact of almost 34% increase in the number of reviews. Each 1 point in cleanliness score increases bookings by 10.87%. More bedrooms increases bookings by 4.67%, and having private rooms also increase bookings by 8.58%. 
 
 ### Linear regression on log reviews
 
