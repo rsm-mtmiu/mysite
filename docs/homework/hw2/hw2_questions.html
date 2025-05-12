@@ -285,7 +285,7 @@ window.Quarto = {
 <li>age: Continuous variable</li>
 <li>iscustomer: Binary variable (0/1)</li>
 </ul>
-<div id="2a116482" class="cell" data-execution_count="2">
+<div id="8e81e613" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 
@@ -344,7 +344,7 @@ window.Quarto = {
 </div>
 <!-- _todo: Compare histograms and means of number of patents by customer status. What do you observe?_ -->
 <p>Let’s also take a look at the distribution of patents by customer status.</p>
-<div id="7435b431" class="cell" data-execution_count="3">
+<div id="7a94be18" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
 <pre><code>   iscustomer   patents
 0           0  3.473013
@@ -359,13 +359,13 @@ window.Quarto = {
 </div>
 </div>
 <p>The mean number of patents for customers is 4.13, while the mean number of patents for non-customers is 3.47. This suggests that customers tend to have more patents on average than non-customers.</p>
-<div id="c07530b7" class="cell" data-execution_count="4">
+<div id="7f4a2d74" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># #| echo: false</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># patent_summary = blueprinty.groupby('iscustomer')['patents'].describe()</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># print(patent_summary)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="faf0265f" class="cell" data-execution_count="5">
+<div id="ce2d7479" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -377,7 +377,7 @@ window.Quarto = {
 <p>Those who are customers have a higher mean number of patents than those who are not customers. This is a good sign for the marketing team, but it is important to note that the two groups are not randomly selected. Customers tend to have more patents on average and are more likely to be in the higher patent count range. Blueprinty customers are not selected at random. It may be important to account for systematic differences in the age and regional location of customers vs non-customers. It reinforces that customer status is not random — customers are probably more innovative or selected for other performance-related reasons.</p>
 <!-- _todo: Compare regions and ages by customer status. What do you observe?_ -->
 <p>Let’s take a look at the mean of ages and distribution of regions by customer status.</p>
-<div id="77b95eb4" class="cell" data-execution_count="6">
+<div id="bb6ed8a1" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Age Summary by Customer Status:
@@ -394,7 +394,7 @@ Age Summary by Customer Status:
 </div>
 </div>
 <p>Customers have a slightly higher mean age of 26.9 than non-customers, who’s mean age was 26.1. Non-customers are on average slightly younger than the dataset mean. Both groups overlap between 20 and 30 years of age, but customers are more likely to be older than 30. Firm age may not be a strong predictor of patent success, but it is important to note that the two groups are not randomly selected.</p>
-<div id="523e4361" class="cell" data-execution_count="7">
+<div id="cc7faba3" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-stdout">
 <pre><code>Region Distribution by Customer Status:
              count       mean       std   min   25%   50%    75%   max
@@ -433,7 +433,7 @@ L(\lambda \mid Y_1, \dots, Y_n) = \prod_{i=1}^n \frac{e^{-\lambda} \lambda^{Y_i}
 \ell(\lambda) = -n\lambda + \left(\sum_{i=1}^n Y_i\right) \log \lambda - \sum_{i=1}^n \log(Y_i!)
 \]</span></p>
 <p>We can also write the function above through the poisson_loglikelihood() below.</p>
-<div id="202dcd40" class="cell" data-execution_count="8">
+<div id="dbe1b995" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> gammaln </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -468,7 +468,7 @@ L(\lambda \mid Y_1, \dots, Y_n) = \prod_{i=1}^n \frac{e^{-\lambda} \lambda^{Y_i}
    ...
 } --&gt;</code></pre>
 <p>Let’s create a function for the log-likelihood of the Poisson model. The function will take in the observed counts ( Y ) and the expected Poisson rate ( ) and return the log-likelihood.</p>
-<div id="442ce158" class="cell" data-execution_count="9">
+<div id="592eb7e2" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> gammaln  <span class="co"># for log(y!) = gammaln(y + 1)</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poisson_log_likelihood(y, lam):</span>
@@ -490,7 +490,7 @@ L(\lambda \mid Y_1, \dots, Y_n) = \prod_{i=1}^n \frac{e^{-\lambda} \lambda^{Y_i}
 </div>
 <!-- _todo: Use your function to plot lambda on the horizontal axis and the likelihood (or log-likelihood) on the vertical axis for a range of lambdas (use the observed number of patents as the input for Y)._ -->
 <p>Let’s use the poisson_log_likelihood() function to plot the log-likelihood against a range of lambda values.</p>
-<div id="d0425332" class="cell" data-execution_count="10">
+<div id="19c9062f" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -502,7 +502,7 @@ L(\lambda \mid Y_1, \dots, Y_n) = \prod_{i=1}^n \frac{e^{-\lambda} \lambda^{Y_i}
 <!-- _todo: If you're feeling mathematical, take the first derivative of your likelihood or log-likelihood, set it equal to zero and solve for lambda. You will find lambda_mle is Ybar, which "feels right" because the mean of a Poisson distribution is lambda._ -->
 <p><em>todo: Find the MLE by optimizing your likelihood function with optim() in R or sp.optimize() in Python.</em></p>
 <p>Now we will find the MLE by optimizing the likelihood function with optim() in R or sp.optimize() in Python.</p>
-<div id="21726d79" class="cell" data-execution_count="11">
+<div id="363e0b83" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-stdout">
 <pre><code>MLE for lambda: 3.6847</code></pre>
 </div>
@@ -518,7 +518,7 @@ L(\lambda \mid Y_1, \dots, Y_n) = \prod_{i=1}^n \frac{e^{-\lambda} \lambda^{Y_i}
 }</code></pre>
 <p>I will now add an additional argument to take in a covariate matrix X and change the parameter of the model from lambda to the beta vector.</p>
 <p>In this model, lambda must be a positive number, so we choose the inverse link function g_inv() to be exp() so that <span class="math inline">\(\lambda_i = e^{X_i'\beta}\)</span>.</p>
-<div id="3fddfc1c" class="cell" data-execution_count="12">
+<div id="95739b0c" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> gammaln</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -549,7 +549,7 @@ L(\lambda \mid Y_1, \dots, Y_n) = \prod_{i=1}^n \frac{e^{-\lambda} \lambda^{Y_i}
 </div>
 <!-- _todo: Use your function along with R's optim() or Python's sp.optimize() to find the MLE vector and the Hessian of the Poisson model with covariates. Specifically, the first column of X should be all 1's to enable a constant term in the model, and the subsequent columns should be age, age squared, binary variables for all but one of the regions, and the binary customer variable. Use the Hessian to find standard errors of the beta parameter estimates and present a table of coefficients and standard errors._ -->
 <p>Let’s compare our results to Python’s sp.optimize() function.</p>
-<div id="b23249e5" class="cell" data-execution_count="13">
+<div id="bcc9b33d" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-stdout">
 <pre><code>             Coefficient  Std. Error
 intercept       1.188966    0.020017
@@ -564,7 +564,7 @@ iscustomer      0.207591    0.035270</code></pre>
 </div>
 <!-- _todo: Check your results using R's glm() function or Python sm.GLM() function._ -->
 <p>Next, we will check our resuts using Python sm.GLM() function</p>
-<div id="1b53c61a" class="cell" data-execution_count="14">
+<div id="e15be144" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-stdout">
 <pre><code>                 Generalized Linear Model Regression Results                  
 ==============================================================================
@@ -574,7 +574,7 @@ Model Family:                 Poisson   Df Model:                            7
 Link Function:                    Log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -3258.1
 Date:                Sun, 11 May 2025   Deviance:                       2143.3
-Time:                        21:30:18   Pearson chi2:                 2.07e+03
+Time:                        21:32:21   Pearson chi2:                 2.07e+03
 No. Iterations:                     5   Pseudo R-squ. (CS):             0.1360
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -632,7 +632,7 @@ Variable Definitions
 </div>
 </div>
 </div>
-<div id="0bf39045" class="cell" data-execution_count="15">
+<div id="923c44a4" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-display" data-execution_count="15">
 <div>
 
@@ -751,7 +751,7 @@ Variable Definitions
 </div>
 <p>We will use the number of reviews as a proxy for the number of bookings. The data is not random, so we will need to be careful about how we interpret our results. <!-- _todo: Assume the number of reviews is a good proxy for the number of bookings. Perform some exploratory data analysis to get a feel for the data, handle or drop observations with missing values on relevant variables, build one or more models (e.g., a poisson regression model for the number of bookings as proxied by the number of reviews), and interpret model coefficients to describe variation in the number of reviews as a function of the variables provided._ --></p>
 <p>Let’s take a look at the data. The dataset has 40,000 observations and we can see that information is missing for some reviews.</p>
-<div id="7720fe4f" class="cell" data-execution_count="16">
+<div id="08059ec3" class="cell" data-execution_count="16">
 <div class="cell-output cell-output-stdout">
 <pre><code>host_since                      35
 bathrooms                      160
@@ -763,7 +763,7 @@ dtype: int64</code></pre>
 </div>
 </div>
 <p>We will drop observations with missing values or 0’s on relevant variables. After dropping the missing values, we are left with 30,346 observations. We will also turn the T/F for the instant_bookable variable into 1/0.</p>
-<div id="d75264f3" class="cell" data-execution_count="18">
+<div id="5f6ad46d" class="cell" data-execution_count="18">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -784,7 +784,7 @@ dtype: int64</code></pre>
 </section>
 <section id="poisson-model" class="level3">
 <h3 class="anchored" data-anchor-id="poisson-model">Poisson Model</h3>
-<div id="50f5bd43" class="cell" data-execution_count="19">
+<div id="44fd3447" class="cell" data-execution_count="19">
 <div class="cell-output cell-output-stdout">
 <pre><code>                 Generalized Linear Model Regression Results                  
 ==============================================================================
@@ -794,7 +794,7 @@ Model Family:                 Poisson   Df Model:                            9
 Link Function:                    Log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:            -5.2792e+05
 Date:                Sun, 11 May 2025   Deviance:                   9.3438e+05
-Time:                        21:30:19   Pearson chi2:                 1.41e+06
+Time:                        21:32:21   Pearson chi2:                 1.41e+06
 No. Iterations:                     6   Pseudo R-squ. (CS):             0.5948
 Covariance Type:            nonrobust                                         
 =============================================================================================
@@ -818,7 +818,7 @@ Shared room                  -0.1050      0.009    -11.536      0.000      -0.12
 <section id="linear-regression-on-log-reviews" class="level3">
 <h3 class="anchored" data-anchor-id="linear-regression-on-log-reviews">Linear regression on log reviews</h3>
 <p>We will now fit a linear regression model on the log of reviews. This is a common practice when the response variable is highly skewed, as it can help to stabilize the variance and make the data more normally distributed.</p>
-<div id="a0788196" class="cell" data-execution_count="20">
+<div id="60e1b013" class="cell" data-execution_count="20">
 <div class="cell-output cell-output-stdout">
 <pre><code>                              OLS Regression Results                             
 =================================================================================
@@ -826,7 +826,7 @@ Dep. Variable:     log_number_of_reviews   R-squared:                       0.02
 Model:                               OLS   Adj. R-squared:                  0.024
 Method:                    Least Squares   F-statistic:                     150.9
 Date:                   Sun, 11 May 2025   Prob (F-statistic):          7.98e-159
-Time:                           21:30:19   Log-Likelihood:                -52587.
+Time:                           21:32:21   Log-Likelihood:                -52587.
 No. Observations:                  30160   AIC:                         1.052e+05
 Df Residuals:                      30154   BIC:                         1.052e+05
 Df Model:                              5                                         
