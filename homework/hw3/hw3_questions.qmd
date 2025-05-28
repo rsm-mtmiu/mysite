@@ -397,6 +397,9 @@ for i, param in enumerate(param_names):
     axes[i, 1].set_xlabel("Value")
     axes[i, 1].set_ylabel("Density")
 
+plt.rcParams.update({'font.size': 8})
+fig, axes = plt.subplots(4, 2, figsize=(9, 6))
+
 # Adjust layout
 plt.tight_layout()
 plt.show()

@@ -289,7 +289,7 @@ u_{ij} = (1 \times Netflix_j) + (0.5 \times Prime_j) + (-0.8*Ads_j) - 0.1\times 
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div id="4202c826" class="cell" data-execution_count="1">
+<div id="d32cd9de" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -373,7 +373,7 @@ u_{ij} = (1 \times Netflix_j) + (0.5 \times Prime_j) + (-0.8*Ads_j) - 0.1\times 
 <p>The “hard part” of the MNL likelihood function is organizing the data, as we need to keep track of 3 dimensions (consumer <span class="math inline">\(i\)</span>, covariate <span class="math inline">\(k\)</span>, and product <span class="math inline">\(j\)</span>) instead of the typical 2 dimensions for cross-sectional regression models (consumer <span class="math inline">\(i\)</span> and covariate <span class="math inline">\(k\)</span>). The fact that each task for each respondent has the same number of alternatives (3) helps. In addition, we need to convert the categorical variables for brand and ads into binary variables.</p>
 <!-- _todo: reshape and prep the data_ -->
 <p>This is what our data looks like after we created dummy variables for the categorical variables (brand and ad features) and sorted it by respondent and task:</p>
-<div id="19693591" class="cell" data-execution_count="3">
+<div id="73e9c778" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
 <pre><code>   resp  task  choice  price  brand_H  brand_N  brand_P  ad_No  ad_Yes
 0     1     1       1     28    False     True    False  False    True
@@ -388,7 +388,7 @@ u_{ij} = (1 \times Netflix_j) + (0.5 \times Prime_j) + (-0.8*Ads_j) - 0.1\times 
 <h2 class="anchored" data-anchor-id="estimation-via-maximum-likelihood">4. Estimation via Maximum Likelihood</h2>
 <!-- _todo: Code up the log-likelihood function._ -->
 <p>Let’s create the log-likelihood function.</p>
-<div id="ea4a6415" class="cell" data-execution_count="4">
+<div id="b8221442" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mnl_log_likelihood(X, Y, beta):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Compute the log-likelihood of a Multinomial Logit (MNL) model.</span></span>
@@ -423,14 +423,14 @@ u_{ij} = (1 \times Netflix_j) + (0.5 \times Prime_j) + (-0.8*Ads_j) - 0.1\times 
 </div>
 <!-- _todo: Use `optim()` in R or `scipy.optimize()` in Python to find the MLEs for the 4 parameters ($\beta_\text{netflix}$, $\beta_\text{prime}$, $\beta_\text{ads}$, $\beta_\text{price}$), as well as their standard errors (from the Hessian). For each parameter construct a 95% confidence interval._ -->
 <p>We will then use <code>scipy.optimize()</code> in Python to find the MLEs for the parameters. (<span class="math inline">\(\beta_\text{netflix}\)</span>, <span class="math inline">\(\beta_\text{prime}\)</span>, <span class="math inline">\(\beta_\text{ads}\)</span>, <span class="math inline">\(\beta_\text{price}\)</span>). We will also find their standard errors (from the Hessian). For each parameter construct a 95% confidence interval.</p>
-<div id="6d6c65d9" class="cell" data-execution_count="5">
+<div id="0fe92e38" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> neg_mnl_log_likelihood(beta, X, Y):</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    beta <span class="op">=</span> np.array(beta, dtype<span class="op">=</span>np.float64)</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>mnl_log_likelihood(X, Y, beta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="585faa09" class="cell" data-execution_count="6">
+<div id="b187cea5" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-stdout">
 <pre><code>Optimization terminated successfully.
          Current function value: 879.855368
@@ -448,7 +448,7 @@ u_{ij} = (1 \times Netflix_j) + (0.5 \times Prime_j) + (-0.8*Ads_j) - 0.1\times 
 <section id="estimation-via-bayesian-methods" class="level2">
 <h2 class="anchored" data-anchor-id="estimation-via-bayesian-methods">5. Estimation via Bayesian Methods</h2>
 <p>Next we will estimate the MNL model using a Bayesian approach via a Metropolis-Hastings MCMC algorithm (a type of Markov Chain Monte Carlo). We are going to run th sampler for 11,000 steps and discard the first 1,000 (burn-in), retaining the subsequent 10,000 samples. This will allow our chain to converge. <!-- _todo: code up a metropolis-hasting MCMC sampler of the posterior distribution. Take 11,000 steps and throw away the first 1,000, retaining the subsequent 10,000._ --></p>
-<div id="32bbdbcd" class="cell" data-execution_count="8">
+<div id="811187a6" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> metropolis_hastings_diag_proposal(log_post_func, initial_beta, steps, X, Y):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    beta_current <span class="op">=</span> np.array(initial_beta, dtype<span class="op">=</span>np.float64)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    posterior_current <span class="op">=</span> log_post_func(beta_current, X, Y)</span>
@@ -514,7 +514,7 @@ Step 10000 / 11000</code></pre>
 <!-- _hint: King Markov (in the video) use a candidate distribution of a coin flip to decide whether to move left or right among his islands.  Unlike King Markov, we have 4 dimensions (because we have 4 betas) and our dimensions are continuous.  So, use a multivariate normal distribution to pospose the next location for the algorithm to move to. I recommend a MNV(mu, Sigma) where mu=c(0,0,0,0) and sigma has diagonal values c(0.05, 0.05, 0.05, 0.005) and zeros on the off-diagonal.  Since this MVN has no covariances, you can sample each dimension independently (so 4 univariate normals instead of 1 multivariate normal), where the first 3 univariate normals are N(0,0.05) and the last one if N(0,0.005)._ -->
 <!-- _todo: for at least one of the 4 parameters, show the trace plot of the algorithm, as well as the histogram of the posterior distribution._ -->
 <p>Here is the trace plot of the algorithm and the histogram of the posterior distribution for each of the 4 parameters.</p>
-<div id="d74a7c06" class="cell" data-execution_count="9">
+<div id="b1e15acd" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -525,7 +525,7 @@ Step 10000 / 11000</code></pre>
 </div>
 <p>The histograms for the posterior parameters all look roughly normal, which is a good sign that the MCMC algorithm has converged. The trace plots show that the samples are well-mixed and do not exhibit any obvious trends or patterns, indicating that the algorithm has explored the parameter space effectively. <!-- _todo: report the 4 posterior means, standard deviations, and 95% credible intervals and compare them to your results from the Maximum Likelihood approach._ --></p>
 <p>Let’s compare the posterior means, standard deviations, and 95% credible intervals to the Maximum Likelihood estimates.</p>
-<div id="0a5c3f54" class="cell" data-execution_count="10">
+<div id="40a00391" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-stdout">
 <pre><code>  Parameter  MLE Mean  MLE Std. Error  MLE 95% CI Lower  MLE 95% CI Upper
 0   brand_N  0.941195        0.082992          0.778531          1.103859
