@@ -368,6 +368,8 @@ summary = pd.DataFrame({
 
 <!-- _todo: for at least one of the 4 parameters, show the trace plot of the algorithm, as well as the histogram of the posterior distribution._ -->
 Here is the trace plot of the algorithm and the histogram of the posterior distribution for each of the 4 parameters.
+
+Note: Please scroll right to see the histograms to the right of the trace plots.
 ```{python}
 #| echo: false
 import matplotlib.pyplot as plt
