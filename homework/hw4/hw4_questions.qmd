@@ -1,0 +1,452 @@
+---
+title: "K-Nearest Neighbors (KNN): Model Evaluation and Optimal k"
+author: Melody Miu
+date: 6-11-25
+---
+
+<!-- _todo: do two analyses.  Do one of either 1a or 1b, AND one of either 2a or 2b._ -->
+
+
+## 1a. K-Means
+
+
+To evaluate the performance of the K-Nearest Neighbors (KNN) algorithm on a synthetic dataset with a non-linear boundary, we implemented KNN from scratch and compared it against scikit-learn's built-in KNeighborsClassifier.
+
+
+<!-- _todo: write your own code to implement the k-means algorithm.  Make plots of the various steps the algorithm takes so you can "see" the algorithm working.  Test your algorithm on the Palmer Penguins dataset, specifically using the bill length and flipper length variables.  Compare your results to the built-in `kmeans` function in R or Python._ -->
+
+
+After loading in our Palmer Penguins dataset, we focused on the `bill_length_mm` and `flipper_length_mm` variables and cleaned the data up by dropping any rows with missing values. 
+```{python}
+#| echo: false
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import fetch_openml
+from sklearn.cluster import KMeans as SklearnKMeans
+import seaborn as sns
+
+# Load the Palmer Penguins dataset
+penguins = pd.read_csv("palmer_penguins.csv")
+penguins.head()
+
+# Focus on relevant variables
+data = penguins[['bill_length_mm', 'flipper_length_mm']].dropna().values
+print(data[1:5])
+
+```
+
+Here, we are creating functions to help us implement the K-Means algorithm. The functions include initializing centroids, assigning clusters based on the closest centroid, updating centroids based on the mean of assigned points, and plotting the clusters at each iteration.
+
+```{python}
+def initialize_centroids(X, k):
+    indices = np.random.choice(X.shape[0], k, replace=False)
+    return X[indices]
+
+def assign_clusters(X, centroids):
+    distances = np.linalg.norm(X[:, np.newaxis] - centroids, axis=2)
+    return np.argmin(distances, axis=1)
+
+def update_centroids(X, labels, k):
+    new_centroids = np.array([X[labels == i].mean(axis=0) for i in range(k)])
+    return new_centroids
+
+def plot_clusters(X, centroids, labels, iteration):
+    plt.figure(figsize=(6, 4))
+    for i in range(len(centroids)):
+        points = X[labels == i]
+        plt.scatter(points[:, 0], points[:, 1], label=f'Cluster {i}')
+    plt.scatter(centroids[:, 0], centroids[:, 1], c='black', marker='x', s=100, label='Centroids')
+    plt.xlabel('Bill Length (mm)')
+    plt.ylabel('Flipper Length (mm)')
+    plt.title(f'Iteration {iteration}')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+def kmeans(X, k, max_iters=10):
+    centroids = initialize_centroids(X, k)
+    for i in range(max_iters):
+        labels = assign_clusters(X, centroids)
+        plot_clusters(X, centroids, labels, i)
+        new_centroids = update_centroids(X, labels, k)
+        if np.all(centroids == new_centroids):
+            break
+        centroids = new_centroids
+    return centroids, labels
+
+```
+
+
+Let's run the K-Means algorithm on our dataset with k=3 clusters and a maximum of 10 iterations. We will visualize the clusters formed at each iteration.
+```{python}
+
+#| echo: false
+
+# Run the algorithm
+centroids, labels = kmeans(data, k=3, max_iters=10)
+```
+
+```{python}
+#| echo: false
+
+sk_kmeans = SklearnKMeans(n_clusters=3, random_state=0)
+sk_labels = sk_kmeans.fit_predict(data)
+
+# Plot sklearn results
+plt.figure(figsize=(6, 4))
+for i in range(3):
+    plt.scatter(data[sk_labels == i, 0], data[sk_labels == i, 1], label=f'Sklearn Cluster {i}')
+plt.scatter(sk_kmeans.cluster_centers_[:, 0], sk_kmeans.cluster_centers_[:, 1], c='black', marker='x', s=100)
+plt.xlabel('Bill Length (mm)')
+plt.ylabel('Flipper Length (mm)')
+plt.title('Sklearn KMeans Result')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+
+```
+
+The output plot shows how the algorithm grouped the penguin observations into 3 distinct clusters based on similarities in bill length and flipper length. The black X's represent the centers of the clusters. These are the final positions after the algorithm has converged.
+
+Both implementations produced visually consistent cluster assignments when plotted, with nearly identical cluster groupings and centroid locations. This confirms that:
+- Our custom implementation correctly follows the K-Means algorithm steps: initialization, point assignment, and centroid update
+- Scikit-learn’s optimized version behaves as expected and can serve as a benchmark.
+
+These results build confidence in the accuracy of the manual implementation and highlight how custom and library-based algorithms can be used interchangeably when properly executed.
+
+<!-- _todo: Calculate both the within-cluster-sum-of-squares and silhouette scores (you can use built-in functions to do so) and plot the results for various numbers of clusters (ie, K=2,3,...,7). What is the "right" number of clusters as suggested by these two metrics?_ -->
+We will now calculate the Within-Cluster Sum of Squares (WCSS) and the Silhouette Score for K values ranging from 2 to 7. The WCSS is a measure of how tightly the clusters are packed, while the Silhouette Score indicates how well-separated the clusters are. We will plot both metrics to help determine the optimal number of clusters.
+
+```{python}
+#| echo: false
+
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+
+wcss = []               # Within-Cluster Sum of Squares
+silhouette_scores = []  # Silhouette Score
+
+# Step 4: Loop over K from 2 to 7
+K_range = range(2, 8)
+for k in K_range:
+    kmeans = KMeans(n_clusters=k, random_state=0)
+    labels = kmeans.fit_predict(data)
+    
+    # WCSS is just kmeans.inertia_
+    wcss.append(kmeans.inertia_)
+    
+    # Silhouette score
+    sil_score = silhouette_score(data, labels)
+    silhouette_scores.append(sil_score)
+
+# Step 5: Plot the results
+fig, ax = plt.subplots(1, 2, figsize=(12, 5))
+
+# Plot WCSS (Elbow Method)
+ax[0].plot(K_range, wcss, marker='o')
+ax[0].set_title("Within-Cluster Sum of Squares (WCSS)")
+ax[0].set_xlabel("Number of Clusters (K)")
+ax[0].set_ylabel("WCSS")
+
+# Plot Silhouette Score
+ax[1].plot(K_range, silhouette_scores, marker='o', color='green')
+ax[1].set_title("Silhouette Score")
+ax[1].set_xlabel("Number of Clusters (K)")
+ax[1].set_ylabel("Silhouette Score")
+
+plt.tight_layout()
+plt.show()
+
+```
+
+The WCSS plot shows a steep drop from K=2 to K=3, followed by more gradual decreases at K=3. This suggests that adding more clusters beyond K=3 yields diminishing improvements in compactness.
+
+The Silhouette Score peaks at K=2, with a notable drop afterward. While K=2 produces the best separation, K=3 still maintains a relatively high silhouette score, offering a good balance between cohesion and separation.
+
+Looking at these two metrics together, K=3 appears to be the optimal number of clusters. It provides a reasonable trade-off between compactness (WCSS) and separation (Silhouette Score), making it a suitable choice for clustering the penguin data.
+
+<!-- _If you want a challenge, add your plots as an animated gif on your website so that the result looks something like [this](https://www.youtube.com/shorts/XCsoWZU9oN8)._ -->
+
+```{python}
+#| echo: false
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_blobs
+from matplotlib.animation import FuncAnimation, PillowWriter
+import seaborn as sns
+
+# Load your data
+df = pd.read_csv("palmer_penguins.csv")
+data = df[['bill_length_mm', 'flipper_length_mm']].dropna().values
+
+# Initialize parameters
+k = 3
+n_iters = 10
+
+# Random initialization
+np.random.seed(0)
+centroids = data[np.random.choice(data.shape[0], k, replace=False)]
+
+assignments = np.zeros(len(data))
+
+frames = []
+
+# Prepare figure
+fig, ax = plt.subplots(figsize=(6, 6))
+
+def plot_frame(i):
+    global centroids, assignments
+    ax.clear()
+
+    # Assign clusters
+    distances = np.linalg.norm(data[:, np.newaxis] - centroids, axis=2)
+    assignments = np.argmin(distances, axis=1)
+
+    # Plot data points
+    for j in range(k):
+        cluster_points = data[assignments == j]
+        ax.scatter(cluster_points[:, 0], cluster_points[:, 1], label=f"Cluster {j}")
+    
+    # Plot centroids
+    ax.scatter(centroids[:, 0], centroids[:, 1], c='black', marker='x', s=100, label='Centroids')
+    ax.set_title(f"K-Means Iteration {i+1}")
+    ax.set_xlabel("Bill Length (mm)")
+    ax.set_ylabel("Flipper Length (mm)")
+    ax.legend()
+    ax.grid(True)
+
+    # Update centroids
+    new_centroids = np.array([data[assignments == j].mean(axis=0) for j in range(k)])
+    if np.allclose(new_centroids, centroids):
+        ani.event_source.stop()  # Stop animation if converged
+    centroids = new_centroids
+
+# Create animation
+ani = FuncAnimation(fig, plot_frame, frames=n_iters, repeat=False)
+ani.save("kmeans_animation.gif", writer=PillowWriter(fps=1))
+
+
+```
+
+<!-- ## 1b. Latent-Class MNL
+
+_todo: Use the Yogurt dataset to estimate a latent-class MNL model. This model was formally introduced in the paper by Kamakura & Russell (1989); you may want to read or reference page 2 of the pdf, which is described in the class slides, session 4, slides 56-57._
+
+_The data provides anonymized consumer identifiers (`id`), a vector indicating the chosen product (`y1`:`y4`), a vector indicating if any products were "featured" in the store as a form of advertising (`f1`:`f4`), and the products' prices in price-per-ounce (`p1`:`p4`). For example, consumer 1 purchased yogurt 4 at a price of 0.079/oz and none of the yogurts were featured/advertised at the time of consumer 1's purchase.  Consumers 2 through 7 each bought yogurt 2, etc. You may want to reshape the data from its current "wide" format into a "long" format._
+
+_todo: Fit the standard MNL model on these data.  Then fit the latent-class MNL on these data separately for 2, 3, 4, and 5 latent classes._
+
+_todo: How many classes are suggested by the $BIC = -2*\ell_n  + k*log(n)$? (where $\ell_n$ is the log-likelihood, $n$ is the sample size, and $k$ is the number of parameters.) The Bayesian-Schwarz Information Criterion [link](https://en.wikipedia.org/wiki/Bayesian_information_criterion) is a metric that assess the benefit of a better log likelihood at the expense of additional parameters to estimate -- akin to the adjusted R-squared for the linear regression model. Note, that a **lower** BIC indicates a better model fit, accounting for the number of parameters in the model._
+
+_todo: compare the parameter estimates between (1) the aggregate MNL, and (2) the latent-class MNL with the number of classes suggested by the BIC._ -->
+
+
+
+## 2a. K Nearest Neighbors
+
+<!-- _todo: use the following code (or the python equivalent) to generate a synthetic dataset for the k-nearest neighbors algorithm.  The code generates a dataset with two features, `x1` and `x2`, and a binary outcome variable `y` that is determined by whether `x2` is above or below a wiggly boundary defined by a sin function._ -->
+
+The dataset was generated using two random variables, x1 and x2, and a binary outcome variable y determined by whether a point lies above or below a "wiggly" decision boundary defined by y = sin(4x1) + x1. A separate test dataset was created using a different random seed to evaluate the model's generalization ability.
+
+
+
+```{python}
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+np.random.seed(42)
+n = 100
+x1 = np.random.uniform(-3, 3, n)
+x2 = np.random.uniform(-3, 3, n)
+
+boundary = np.sin(4 * x1) + x1
+
+# Assign labels
+y = (x2 > boundary).astype(int)
+
+df = pd.DataFrame({
+    'x1': x1,
+    'x2': x2,
+    'y': y
+})
+
+```
+
+<!-- _todo: plot the data where the horizontal axis is `x1`, the vertical axis is `x2`, and the points are colored by the value of `y`.  You may optionally draw the wiggly boundary._ -->
+
+Let's plot the data where the horizontal axis is `x1`, the vertical axis is `x2`, and the points are colored by the value of `y`.
+
+```{python}
+#| echo: false
+
+plt.figure(figsize=(8, 6))
+plt.scatter(df['x1'], df['x2'], c=df['y'], cmap='coolwarm', edgecolor='k', s=60)
+plt.xlabel('x1')
+plt.ylabel('x2')
+plt.title('Synthetic Dataset with Wiggly Boundary')
+plt.grid(True)
+
+# Optional: Plot the actual decision boundary curve
+x1_sorted = np.linspace(-3, 3, 300)
+boundary_curve = np.sin(4 * x1_sorted) + x1_sorted
+plt.plot(x1_sorted, boundary_curve, color='black', linestyle='--', label='True Boundary')
+
+plt.legend()
+plt.show()
+```
+
+As we can see from the graph, the points are colored based on their binary outcome variable `y`, with the wiggly boundary represented by the dashed line. Points above the boundary are labeled as 1, and those below are labeled as 0.
+
+<!-- _todo: generate a test dataset with 100 points, using the same code as above but with a different seed._ -->
+ We will generate a test dataset with 100 points using a different random seed to ensure that the model can generalize well to unseen data.
+
+```{python}
+#| echo: false
+
+import seaborn as sns
+
+np.random.seed(24)     # Use a different seed than training
+n = 100                # Number of points
+x1 = np.random.uniform(-3, 3, n)
+x2 = np.random.uniform(-3, 3, n)
+
+boundary = np.sin(4 * x1) + x1
+
+y = (x2 > boundary).astype(int)
+
+test_df = pd.DataFrame({
+    'x1': x1,
+    'x2': x2,
+    'y': y
+})
+
+plt.figure(figsize=(8, 6))
+sns.scatterplot(data=test_df, x='x1', y='x2', hue='y', palette='coolwarm', edgecolor='k', s=60)
+
+x1_sorted = np.linspace(-3, 3, 300)
+boundary_line = np.sin(4 * x1_sorted) + x1_sorted
+plt.plot(x1_sorted, boundary_line, color='black', linestyle='--', label='True Boundary')
+
+plt.xlabel('x1')
+plt.ylabel('x2')
+plt.title('Test Dataset with Wiggly Boundary')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+<!-- _todo: implement KNN by hand.  Check you work with a built-in function -- eg, `class::knn()` or `caret::train(method="knn")` in R, or scikit-learn's `KNeighborsClassifier` in Python._ -->
+
+We will now implement the K-Nearest Neighbors (KNN) algorithm manually and compare it with the built-in `KNeighborsClassifier` from scikit-learn. The manual implementation will involve calculating distances, finding nearest neighbors, and making predictions based on majority voting.
+
+```{python}
+#| echo: false
+
+from collections import Counter
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+
+# STEP 1: Generate training data (seed = 42)
+np.random.seed(42)
+n_train = 100
+x1_train = np.random.uniform(-3, 3, n_train)
+x2_train = np.random.uniform(-3, 3, n_train)
+boundary_train = np.sin(4 * x1_train) + x1_train
+y_train = (x2_train > boundary_train).astype(int)
+X_train = np.column_stack((x1_train, x2_train))
+
+# STEP 2: Generate test data (seed = 24)
+np.random.seed(24)
+n_test = 100
+x1_test = np.random.uniform(-3, 3, n_test)
+x2_test = np.random.uniform(-3, 3, n_test)
+boundary_test = np.sin(4 * x1_test) + x1_test
+y_test = (x2_test > boundary_test).astype(int)
+X_test = np.column_stack((x1_test, x2_test))
+
+
+```
+
+This is the function we will use.
+```{python}
+
+def knn_predict(X_train, y_train, X_test, k=3):
+    predictions = []
+    for test_point in X_test:
+        distances = np.sqrt(((X_train - test_point) ** 2).sum(axis=1))
+        nearest_indices = distances.argsort()[:k]
+        nearest_labels = y_train[nearest_indices]
+        most_common = Counter(nearest_labels).most_common(1)[0][0]
+        predictions.append(most_common)
+    return np.array(predictions)
+
+```
+
+```{python}
+#| echo: false
+
+k = 3
+y_pred_manual = knn_predict(X_train, y_train, X_test, k)
+
+# STEP 5: Predict with sklearn KNN
+knn_model = KNeighborsClassifier(n_neighbors=k)
+knn_model.fit(X_train, y_train)
+y_pred_sklearn = knn_model.predict(X_test)
+
+# STEP 6: Evaluate
+acc_manual = accuracy_score(y_test, y_pred_manual)
+acc_sklearn = accuracy_score(y_test, y_pred_sklearn)
+agree = np.mean(y_pred_manual == y_pred_sklearn)
+
+print(f"Manual KNN Accuracy:   {acc_manual:.2f}")
+print(f"Sklearn KNN Accuracy:  {acc_sklearn:.2f}")
+print(f"Prediction Agreement:  {agree * 100:.0f}%")
+
+```
+
+Our results from the manual KNN implementation and the scikit-learn KNeighborsClassifier show that both methods yield similar accuracy on the test dataset, with a prediction agreement of nearly 100%. This confirms that our manual implementation is functioning correctly.
+
+<!-- _todo: run your function for k=1,...,k=30, each time noting the percentage of correctly-classified points from the test dataset. Plot the results, where the horizontal axis is 1-30 and the vertical axis is the percentage of correctly-classified points. What is the optimal value of k as suggested by your plot?_  -->
+
+We tested values of k from 1 through 30, computing the classification accuracy on the test set for each case. The results were plotted, with k on the x-axis and accuracy (in %) on the y-axis.
+```{python}
+#| echo: false
+
+k_values = list(range(1, 31))
+accuracies = []
+
+# Loop through each k, compute accuracy
+for k in k_values:
+    y_pred = knn_predict(X_train, y_train, X_test, k)
+    acc = accuracy_score(y_test, y_pred)
+    accuracies.append(acc * 100)  # convert to percentage
+
+# Plot the results
+plt.figure(figsize=(10, 6))
+plt.plot(k_values, accuracies, marker='o')
+plt.title('KNN Classification Accuracy vs. k (Manual Implementation)')
+plt.xlabel('Number of Neighbors (k)')
+plt.ylabel('Accuracy (%)')
+plt.xticks(range(1, 31, 2))
+plt.grid(True)
+plt.show()
+
+```
+k = 2 seems to be the optimal value as suggested by our plot above. As k increases beyond this point, the accuracy tends to stabilize or slightly decrease, indicating that larger values of k may introduce more noise into the predictions. k = 1 may suggest overfitting. 
+
+<!-- ## 2b. Key Drivers Analysis
+
+_todo: replicate the table on slide 75 of the session 5 slides. Specifically, using the dataset provided in the file data_for_drivers_analysis.csv, calculate: pearson correlations, standardized regression coefficients, "usefulness", Shapley values for a linear regression, Johnson's relative weights, and the mean decrease in the gini coefficient from a random forest. You may use packages built into R or Python; you do not need to perform these calculations "by hand."_
+
+_If you want a challenge, add additional measures to the table such as the importance scores from XGBoost, from a Neural Network, or from any additional method that measures the importance of variables._
+
+ -->
+
+
+
+
