@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Melody Miu">
-<meta name="dcterms.date" content="2026-11-25">
+<meta name="dcterms.date" content="2025-06-11">
 
 <title>K-Nearest Neighbors (KNN): Model Evaluation and Optimal k – Melody Miu</title>
 <style>
@@ -208,7 +208,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 25, 2026</p>
+      <p class="date">June 11, 2025</p>
     </div>
   </div>
   
@@ -226,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To evaluate the performance of the K-Nearest Neighbors (KNN) algorithm on a synthetic dataset with a non-linear boundary, we implemented KNN from scratch and compared it against scikit-learn’s built-in KNeighborsClassifier.</p>
 <!-- _todo: write your own code to implement the k-means algorithm.  Make plots of the various steps the algorithm takes so you can "see" the algorithm working.  Test your algorithm on the Palmer Penguins dataset, specifically using the bill length and flipper length variables.  Compare your results to the built-in `kmeans` function in R or Python._ -->
 <p>After loading in our Palmer Penguins dataset, we focused on the <code>bill_length_mm</code> and <code>flipper_length_mm</code> variables and cleaned the data up by dropping any rows with missing values.</p>
-<div id="c89224bc" class="cell" data-execution_count="1">
+<div id="17f85e3a" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
 <pre><code>[[ 39.5 186. ]
  [ 40.3 195. ]
@@ -235,7 +235,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Here, we are creating functions to help us implement the K-Means algorithm. The functions include initializing centroids, assigning clusters based on the closest centroid, updating centroids based on the mean of assigned points, and plotting the clusters at each iteration.</p>
-<div id="3ebc01a2" class="cell" data-execution_count="2">
+<div id="5c574ca4" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> initialize_centroids(X, k):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    indices <span class="op">=</span> np.random.choice(X.shape[<span class="dv">0</span>], k, replace<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> X[indices]</span>
@@ -273,7 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> centroids, labels</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s run the K-Means algorithm on our dataset with k=3 clusters and a maximum of 10 iterations. We will visualize the clusters formed at each iteration.</p>
-<div id="193391f8" class="cell" data-execution_count="3">
+<div id="7328e2a8" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -316,36 +316,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="hw4_questions_files/figure-html/cell-4-output-7.png" width="519" height="376" class="figure-img"></p>
-</figure>
 </div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="hw4_questions_files/figure-html/cell-4-output-8.png" width="519" height="376" class="figure-img"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="hw4_questions_files/figure-html/cell-4-output-9.png" width="519" height="376" class="figure-img"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="hw4_questions_files/figure-html/cell-4-output-10.png" width="519" height="376" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="83d895ee" class="cell" data-execution_count="4">
+<div id="3b18191a" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -359,7 +331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>These results build confidence in the accuracy of the manual implementation and highlight how custom and library-based algorithms can be used interchangeably when properly executed.</p>
 <!-- _todo: Calculate both the within-cluster-sum-of-squares and silhouette scores (you can use built-in functions to do so) and plot the results for various numbers of clusters (ie, K=2,3,...,7). What is the "right" number of clusters as suggested by these two metrics?_ -->
 <p>We will now calculate the Within-Cluster Sum of Squares (WCSS) and the Silhouette Score for K values ranging from 2 to 7. The WCSS is a measure of how tightly the clusters are packed, while the Silhouette Score indicates how well-separated the clusters are. We will plot both metrics to help determine the optimal number of clusters.</p>
-<div id="2f6629e2" class="cell" data-execution_count="5">
+<div id="43a6f1a4" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -372,7 +344,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The Silhouette Score peaks at K=2, with a notable drop afterward. While K=2 produces the best separation, K=3 still maintains a relatively high silhouette score, offering a good balance between cohesion and separation.</p>
 <p>Looking at these two metrics together, K=3 appears to be the optimal number of clusters. It provides a reasonable trade-off between compactness (WCSS) and separation (Silhouette Score), making it a suitable choice for clustering the penguin data.</p>
 <!-- _If you want a challenge, add your plots as an animated gif on your website so that the result looks something like [this](https://www.youtube.com/shorts/XCsoWZU9oN8)._ -->
-<div id="f07c22b1" class="cell" data-execution_count="6">
+<div id="903a9e2a" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -397,7 +369,7 @@ _todo: compare the parameter estimates between (1) the aggregate MNL, and (2) th
 <h2 class="anchored" data-anchor-id="a.-k-nearest-neighbors">2a. K Nearest Neighbors</h2>
 <!-- _todo: use the following code (or the python equivalent) to generate a synthetic dataset for the k-nearest neighbors algorithm.  The code generates a dataset with two features, `x1` and `x2`, and a binary outcome variable `y` that is determined by whether `x2` is above or below a wiggly boundary defined by a sin function._ -->
 <p>The dataset was generated using two random variables, x1 and x2, and a binary outcome variable y determined by whether a point lies above or below a “wiggly” decision boundary defined by y = sin(4x1) + x1. A separate test dataset was created using a different random seed to evaluate the model’s generalization ability.</p>
-<div id="6dcdc447" class="cell" data-execution_count="7">
+<div id="434b3773" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -420,7 +392,7 @@ _todo: compare the parameter estimates between (1) the aggregate MNL, and (2) th
 </div>
 <!-- _todo: plot the data where the horizontal axis is `x1`, the vertical axis is `x2`, and the points are colored by the value of `y`.  You may optionally draw the wiggly boundary._ -->
 <p>Let’s plot the data where the horizontal axis is <code>x1</code>, the vertical axis is <code>x2</code>, and the points are colored by the value of <code>y</code>.</p>
-<div id="b913dca3" class="cell" data-execution_count="8">
+<div id="f68b9056" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -432,7 +404,7 @@ _todo: compare the parameter estimates between (1) the aggregate MNL, and (2) th
 <p>As we can see from the graph, the points are colored based on their binary outcome variable <code>y</code>, with the wiggly boundary represented by the dashed line. Points above the boundary are labeled as 1, and those below are labeled as 0.</p>
 <!-- _todo: generate a test dataset with 100 points, using the same code as above but with a different seed._ -->
 <p>We will generate a test dataset with 100 points using a different random seed to ensure that the model can generalize well to unseen data.</p>
-<div id="6300c1c7" class="cell" data-execution_count="9">
+<div id="33bff257" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -444,7 +416,7 @@ _todo: compare the parameter estimates between (1) the aggregate MNL, and (2) th
 <!-- _todo: implement KNN by hand.  Check you work with a built-in function -- eg, `class::knn()` or `caret::train(method="knn")` in R, or scikit-learn's `KNeighborsClassifier` in Python._ -->
 <p>We will now implement the K-Nearest Neighbors (KNN) algorithm manually and compare it with the built-in <code>KNeighborsClassifier</code> from scikit-learn. The manual implementation will involve calculating distances, finding nearest neighbors, and making predictions based on majority voting.</p>
 <p>This is the function we will use.</p>
-<div id="7dc2e3e8" class="cell" data-execution_count="11">
+<div id="f65199cc" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> knn_predict(X_train, y_train, X_test, k<span class="op">=</span><span class="dv">3</span>):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    predictions <span class="op">=</span> []</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> test_point <span class="kw">in</span> X_test:</span>
@@ -455,7 +427,7 @@ _todo: compare the parameter estimates between (1) the aggregate MNL, and (2) th
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        predictions.append(most_common)</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(predictions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="990dc965" class="cell" data-execution_count="12">
+<div id="62fbf073" class="cell" data-execution_count="12">
 <div class="cell-output cell-output-stdout">
 <pre><code>Manual KNN Accuracy:   0.91
 Sklearn KNN Accuracy:  0.91
@@ -465,7 +437,7 @@ Prediction Agreement:  100%</code></pre>
 <p>Our results from the manual KNN implementation and the scikit-learn KNeighborsClassifier show that both methods yield similar accuracy on the test dataset, with a prediction agreement of nearly 100%. This confirms that our manual implementation is functioning correctly.</p>
 <!-- _todo: run your function for k=1,...,k=30, each time noting the percentage of correctly-classified points from the test dataset. Plot the results, where the horizontal axis is 1-30 and the vertical axis is the percentage of correctly-classified points. What is the optimal value of k as suggested by your plot?_  -->
 <p>We tested values of k from 1 through 30, computing the classification accuracy on the test set for each case. The results were plotted, with k on the x-axis and accuracy (in %) on the y-axis.</p>
-<div id="9baa0ea1" class="cell" data-execution_count="13">
+<div id="d5cdd9bd" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">

@@ -1,7 +1,7 @@
 ---
 title: "K-Nearest Neighbors (KNN): Model Evaluation and Optimal k"
 author: Melody Miu
-date: 6-11-25
+date: 06-11-25
 ---
 
 <!-- _todo: do two analyses.  Do one of either 1a or 1b, AND one of either 2a or 2b._ -->
